@@ -61,9 +61,10 @@ angular.module('dontrepeatsheets.controllers', [])
         }
         $rootScope.auth.$authWithPassword($scope.user)
         .then(function (user) {
-          console.log(user);
+          // console.log(user);
           $rootScope.hide();
-          $rootScope.userEmail = user.email;
+          $rootScope.userEmail = user.password.email;
+          console.log($rootScope.userEmail);
           $window.location.href = ('#/bucket/list');
         }, function (error) {
           $rootScope.hide();
