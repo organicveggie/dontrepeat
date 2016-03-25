@@ -338,7 +338,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "todo/todo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = "Dont Repeat Sheets";
 			};
 			name = Debug;
 		};
@@ -357,7 +357,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "todo/todo-Info.plist";
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = "Dont Repeat Sheets";
 			};
 			name = Release;
 		};
@@ -384,7 +384,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = "Dont Repeat Sheets";
 			};
 			name = Debug;
 		};
@@ -410,7 +410,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = "Dont Repeat Sheets";
 			};
 			name = Release;
 		};

@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.todo932893;
+package com.ionicframework.dontrepeatsheets;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

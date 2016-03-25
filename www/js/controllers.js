@@ -86,10 +86,11 @@ angular.module('dontrepeatsheets.controllers', [])
 ])
 
 .controller('myListCtrl', function($rootScope, $scope, $window, $ionicModal, $firebase) {
-  console.log($rootScope.userEmail);
   $rootScope.show("Please wait... Processing");
   $scope.list = [];
-  var bucketListRef = new Firebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
+  $scope.catList = [{title: 'Uncategorized'}];
+  var bucketListRef = new Firebase($rootScope.baseUrl + 'incidents');
+
   bucketListRef.on('value', function(snapshot) {
     var data = snapshot.val();
 
@@ -118,6 +119,14 @@ angular.module('dontrepeatsheets.controllers', [])
 
   $scope.newTask = function() {
     $scope.newTemplate.show();
+  };
+
+  $ionicModal.fromTemplateUrl('templates/newCat.html', function(modal) {
+    $scope.newCatTemplate = modal;
+  });
+
+  $scope.newCat = function() {
+    $scope.newCatTemplate.show();
   };
 
   $scope.markCompleted = function(key) {
@@ -152,24 +161,45 @@ angular.module('dontrepeatsheets.controllers', [])
 })
 .controller('newCtrl', function($rootScope, $scope, $window, $firebase) {
   $scope.data = {
-    item: ""
+    title: "", description: "", category: "", tags: "", location: "", severity: "",
   };
+  var categoryListRef = new Firebase($rootScope.baseUrl + 'categories');
+  categoryListRef.on('value', function(snapshot) {
+    var data = snapshot.val();
+    $scope.catList = [{title: 'Uncategorized'}];
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        data[key].key = key;
+        $scope.catList.push(data[key]);
+      }
+    }
+  });
 
   $scope.close = function() {
     $scope.modal.hide();
   };
 
   $scope.createNew = function() {
-    var item = this.data.item;
+    var title = this.data.title;
+    var description = this.data.description;
+    var category = this.data.category;
+    var tags = this.data.tags;
+    var location = this.data.location;
+    var severity = this.data.severity;
 
-    if (!item) return;
+    if (!title) return;
 
     $scope.modal.hide();
     $rootScope.show();
     $rootScope.show("Please wait... Creating new");
 
     var form = {
-      item: item,
+      title: title,
+      description: description,
+      category: category,
+      tags: tags,
+      location: location,
+      severity: severity,
       email: escapeEmailAddress($rootScope.userEmail),
       isCompleted: false,
       created: Date.now(),
@@ -177,7 +207,37 @@ angular.module('dontrepeatsheets.controllers', [])
     };
 
     var bucketListRef = new Firebase($rootScope.baseUrl + 'incidents');
-    bucketListRef.set(form);
+    bucketListRef.push(form);
+
+    // $firebase(bucketListRef).$add(form);
+    $rootScope.hide();
+  };
+})
+.controller('newCatCtrl', function($rootScope, $scope, $window, $firebase) {
+  $scope.data = {
+    title: ""
+  };
+
+  $scope.close = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.createNewCat = function() {
+    var title = this.data.title;
+
+    if (!title) return;
+
+    $scope.modal.hide();
+    $rootScope.show();
+    $rootScope.show("Please wait... Creating new");
+
+    var category = {
+      title: title,
+    };
+
+    var categoryListRef = new Firebase($rootScope.baseUrl + 'categories');
+    categoryListRef.push(category);
+
     // $firebase(bucketListRef).$add(form);
     $rootScope.hide();
   };

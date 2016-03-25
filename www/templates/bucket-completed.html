@@ -5,11 +5,8 @@
 <ion-content class="has-header padding" has-tabs="true" on-refresh="onRefresh()">
   <div class="card" ng-repeat="item in list" >
     <div class="item item-text-wrap">
-      <span>{{ item.item }}</span>
-      <br/>  <br/>
-      <p class="actions padding">
-        <i class="ion-trash-b icon-actions margin" ng-click="deleteItem('{{item.key}}')"></i>
-      </p>
+      <h3 class="profile-name">{{item.title}}</h3>
+      <p>{{ item.description }}</p>
     </div>
   </div>
   <div class="card" >
