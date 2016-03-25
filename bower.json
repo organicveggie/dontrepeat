@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "angular-local-storage": "^0.2.7"
+    "angular-local-storage": "^0.2.7",
+    "firebase": "^2.4.1"
   }
 }
