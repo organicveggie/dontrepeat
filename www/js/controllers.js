@@ -86,30 +86,33 @@ angular.module('dontrepeatsheets.controllers', [])
   $scope.list = [];
   $scope.catList = [{title: 'Uncategorized'}];
   $scope.alert = '';
+  var incidentSeverityIcons = {
+    'low': 'ion-android-happy',
+    'medium': 'ion-android-sad',
+    'high': 'ion-android-alert',
+    'critical': 'ion-android-hand',
+  };
   // get recent alert
   var alertRef = new Firebase($rootScope.baseUrl + 'alert');
-  alertRef.once('value', function(snapshot){
+  alertRef.on('value', function(snapshot){
     $scope.alert = snapshot.val();
-  });
-  alertRef.on('child_changed', function(snapshot){
-    $scope.alert = snapshot.val();
+    $rootScope.hide();
   });
   // get incidents list
   var bucketListRef = new Firebase($rootScope.baseUrl + 'incidents');
-  bucketListRef.on('value', function(snapshot) {
+  bucketListRef.orderByChild('created').on('value', function(snapshot) {
     var data = snapshot.val();
-
     $scope.list = [];
-
     for (var key in data) {
       if (data.hasOwnProperty(key)) {
-        if (data[key].isCompleted == false) {
-          data[key].key = key;
-          $scope.list.push(data[key]);
+        data[key].key = key;
+        if (data[key].severity) {
+          data[key].severityClass = 'incident-severity incident-severity-' + data[key].severity.toLowerCase();
+          data[key].severityIconClass = incidentSeverityIcons[data[key].severity.toLowerCase()]
         }
+        $scope.list.push(data[key]);
       }
     }
-
     if ($scope.list.length == 0) {
       $scope.noData = true;
     } else {
