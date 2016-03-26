@@ -6,10 +6,14 @@
 </ion-header-bar>
 <ion-content class="has-header padding" has-tabs="true" on-refresh="onRefresh()">
   <div class="card alert">{{ alert }}</div>
-  <div class="card incident" ng-repeat="item in list" id="{{item.key}}" ng-click="viewIncident(item, $index)" >
+  <div class="card incident" ng-repeat="item in list | orderBy:'-created'" id="{{item.key}}" ng-click="viewIncident(item, $index)" >
     <div class="item item-text-wrap">
-      <h3 class="profile-name">{{item.title}}</h3>
-      <p>{{ item.description }}</p>
+      <span class="{{ item.severityClass }}">
+        <i class="{{ item.severityIconClass }}"></i>
+      </span>
+      <span>
+        <strong class="profile-name">{{item.title}}</strong><br>{{ item.description }}
+      </span>
     </div>
   </div>
   <div class="card" >
