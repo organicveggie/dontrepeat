@@ -1,20 +1,14 @@
 /* Empty. Add your own CSS if you like */
-.margin {
-  margin-left: 9px;
-  margin-right: 9px;
-}
-.icon-actions {
-  font-size: 23px;
-}
-.checkbox {
-  vertical-align: middle;
-}
-.actions {
-  float: right;
-}
-.item-text-wrap {
-  overflow: auto;
-}
-.ion-checkmark-circled.icon-actions.margin{
-  margin-right: 35px;
-}
+.margin { margin-left: 9px; margin-right: 9px; }
+.icon-actions { font-size: 23px; }
+.checkbox { vertical-align: middle; }
+.actions { float: right; }
+.item-text-wrap { overflow: auto; }
+.ion-checkmark-circled.icon-actions.margin{ margin-right: 35px; }
+/*.bar.bar-positive .title { color: #252525; }*/
+.profile-name{ color: #252525; }
+.card {box-shadow: none; margin: 2px;}
+.card .item{ border-radius: 0; padding: 2px; }
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], select
+{border: 1px solid #CCC; width: 100%}
+.newItem { padding-bottom: 20px; overflow: scroll;}

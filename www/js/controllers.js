@@ -9,10 +9,6 @@ angular.module('dontrepeatsheets.controllers', [])
       $scope.createUser = function () {
         var email = this.user.email;
         var password = this.user.password;
-        // console.log(email);
-        // console.log(password);
-        // return false;
-
         if (!email || !password) {
           $rootScope.notify("Please enter valid credentials");
           return false;
@@ -89,8 +85,17 @@ angular.module('dontrepeatsheets.controllers', [])
   $rootScope.show("Please wait... Processing");
   $scope.list = [];
   $scope.catList = [{title: 'Uncategorized'}];
+  $scope.alert = '';
+  // get recent alert
+  var alertRef = new Firebase($rootScope.baseUrl + 'alert');
+  alertRef.once('value', function(snapshot){
+    $scope.alert = snapshot.val();
+  });
+  alertRef.on('child_changed', function(snapshot){
+    $scope.alert = snapshot.val();
+  });
+  // get incidents list
   var bucketListRef = new Firebase($rootScope.baseUrl + 'incidents');
-
   bucketListRef.on('value', function(snapshot) {
     var data = snapshot.val();
 
