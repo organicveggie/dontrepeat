@@ -7,8 +7,8 @@
 .ion-checkmark-circled.icon-actions.margin{ margin-right: 35px; }
 /*.bar.bar-positive .title { color: #252525; }*/
 .profile-name{ color: #252525; }
-.card {box-shadow: none; margin: 2px;}
-.card .item{ border-radius: 0; padding: 2px; }
+.incident {box-shadow: none; margin: 2px;}
+.incident .item{ border-radius: 0; padding: 2px; }
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], select
 {border: 1px solid #CCC; width: 100%}
 .newItem { padding-bottom: 20px; overflow: scroll;}
