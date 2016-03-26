@@ -88,11 +88,10 @@ angular.module('dontrepeatsheets.controllers', [])
   $scope.alert = '';
   // get recent alert
   var alertRef = new Firebase($rootScope.baseUrl + 'alert');
-  alertRef.once('value', function(snapshot){
+  alertRef.on('value', function(snapshot){
+    console.log('alert value:', snapshot.val())
     $scope.alert = snapshot.val();
-  });
-  alertRef.on('child_changed', function(snapshot){
-    $scope.alert = snapshot.val();
+    $rootScope.hide();
   });
   // get incidents list
   var bucketListRef = new Firebase($rootScope.baseUrl + 'incidents');
@@ -134,6 +133,20 @@ angular.module('dontrepeatsheets.controllers', [])
     $scope.newCatTemplate.show();
   };
 
+  $ionicModal.fromTemplateUrl('templates/item.html', function(modal) {
+    $scope.viewTemplate = modal;
+  }, {
+    animation: 'slide-in-up',
+    scope: $scope,  /// GIVE THE MODAL ACCESS TO PARENT SCOPE
+  });
+
+  // Called to view the details for the given incident
+  $scope.viewIncident = function(incident, index) {
+    // console.log("Incident:", incident.title);
+    $scope.incident = incident;
+    $scope.viewTemplate.show();
+  };
+
   $scope.markCompleted = function(key) {
     $rootScope.show("Please wait... Updating List");
     var itemRef = new Firebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail) + '/' + key);
@@ -162,6 +175,11 @@ angular.module('dontrepeatsheets.controllers', [])
         $rootScope.notify('Successfully deleted');
       }
     });
+  };
+})
+.controller('viewCtrl', function($rootScope, $scope, $window, $firebase) {
+  $scope.close = function() {
+    $scope.viewTemplate.hide();
   };
 })
 .controller('newCtrl', function($rootScope, $scope, $window, $firebase) {

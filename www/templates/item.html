@@ -1,0 +1,18 @@
+<div class="modal slide-in-up" ng-controller="viewCtrl">
+  <header class="bar bar-header bar-secondary">
+    <h1 class="title">{{incident.title}}</h1>
+    <button class="button button-positive" ng-click="close()">Done</button>
+  </header>
+  <ion-content class="padding has-header viewItem">
+    <label>Description</label>
+    <div class="item-text">{{incident.description}}</div>
+    <label>Category</label>
+    <div class="item-text">{{incident.category}}</div>
+    <label>Tags</label>
+    <div class="item-text">{{incident.tags}}</div>
+    <label>Location</label>
+    <div class="item-text">{{incident.location}}</div>
+    <label>Severity</label>
+    <div class="item-text">{{incident.severity}}</div>
+  </ion-content>
+</div>
