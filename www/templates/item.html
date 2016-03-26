@@ -4,15 +4,20 @@
     <button class="button button-positive" ng-click="close()">Done</button>
   </header>
   <ion-content class="padding has-header viewItem">
-    <label>Description</label>
-    <div class="item-text">{{incident.description}}</div>
-    <label>Category</label>
-    <div class="item-text">{{incident.category}}</div>
-    <label>Tags</label>
-    <div class="item-text">{{incident.tags}}</div>
-    <label>Location</label>
-    <div class="item-text">{{incident.location}}</div>
-    <label>Severity</label>
-    <div class="item-text">{{incident.severity}}</div>
+    <label><strong class="profile-name">Description</strong></label>
+    <div class="item item-text-wrap">{{incident.description}}</div>
+    <label><strong class="profile-name">Category</strong></label>
+    <div class="item item-text-wrap">{{incident.category}}</div>
+    <label><strong class="profile-name">Tags</strong></label>
+    <div class="item item-text-wrap">{{incident.tags}}</div>
+    <label><strong class="profile-name">Location</strong></label>
+    <div class="item item-text-wrap">{{incident.location}}</div>
+    <label><strong class="profile-name">Severity</strong></label>
+    <div class="item item-text-wrap">
+        <span class="{{ incident.severityClass }}">
+            <i class="{{ incident.severityIconClass }}"></i>
+        </span>
+        {{incident.severity}}
+    </div>
   </ion-content>
 </div>
